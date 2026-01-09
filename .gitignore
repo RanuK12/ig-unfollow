@@ -1,0 +1,28 @@
+# System files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Old versions
+*-v1.html
+*-v2.html
+*-v3.html
+bookmarklet-*.html
+instagram-unfollow-old.js
+
+# Temporary files
+*.tmp
+temp/
+
+# Do not ignore
+!bookmarklet.html
+!script-main.js
+!COPY_CODE.html
