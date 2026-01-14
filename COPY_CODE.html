@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy Instagram Unfollow Code</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 800px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        .step {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border-left: 4px solid #667eea;
+            border-radius: 4px;
+        }
+        .step-num {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+        .copy-area {
+            background: #1e1e1e;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 11px;
+            line-height: 1.5;
+            max-height: 300px;
+            overflow-y: auto;
+            word-break: break-all;
+        }
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        .copy-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+        .copy-btn.copied {
+            background: #28a745;
+        }
+        .warning {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            border-radius: 8px;
+            color: #721c24;
+            margin: 20px 0;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            border-radius: 8px;
+            color: #155724;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Copy Instagram Unfollow Code</h1>
+        <p class="subtitle">No hosting, no downloads - pure copy & paste</p>
+
+        <div class="warning">
+            <strong>⚠️ Warning:</strong> This violates Instagram's Terms of Service. You may face action blocks, restrictions, or account suspension. Use at your own risk.
+        </div>
+
+        <div class="step">
+            <span class="step-num">1</span>
+            <strong>Select and copy the code below:</strong>
+            <div class="copy-area" id="codeArea">javascript:(async()=>{const delays={unfollow:[4000,6000],pause:30000,batch:300};const Utils={getCookie:n=>{const e="; "+document.cookie,t=e.split("; "+n+"=");return 2===t.length?t.pop().split(";").shift():null},getUserID:()=>Utils.getCookie("ds_user_id"),getCSRFToken:()=>Utils.getCookie("csrftoken"),sleep:n=>new Promise(e=>setTimeout(e,n)),randomDelay:(n,e)=>Math.floor(Math.random()*(e-n)+n)},API={async fetchFollowing(n){const e=Utils.getUserID();if(!e)throw new Error("Not authenticated");const t={id:e,include_reel:!0,fetch_mutual:!1,first:50};n&&(t.after=n);const o="https://www.instagram.com/graphql/query/?query_hash=3dec7e2c57367ef3da3d987d89f9dbc8&variables="+JSON.stringify(t),s=await fetch(o,{credentials:"include"});if(!s.ok)throw new Error("HTTP "+s.status);const i=await s.json();if(i.errors)throw new Error(i.errors[0]?.message||"API error");return i.data.user.edge_follow},async unfollow(n){const e=Utils.getCSRFToken();if(!e)throw new Error("No CSRF");const t=await fetch("https://www.instagram.com/web/friendships/"+n+"/unfollow/",{method:"POST",headers:{"X-CSRFToken":e,"Content-Type":"application/x-www-form-urlencoded"},credentials:"include"});if(!t.ok)throw new Error("HTTP "+t.status);return await t.json()}};let n=[],e=new Set;const t=document.createElement("div");t.style.cssText="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;z-index:99999;font-family:system-ui,sans-serif;";document.body.appendChild(t);const o=document.createElement("div");o.style.cssText="background:white;border-radius:12px;width:90%;max-width:700px;max-height:85vh;display:flex;flex-direction:column;";t.appendChild(o);const s=document.createElement("div");s.style.cssText="padding:20px;border-bottom:1px solid #e0e0e0;";const i=document.createElement("h2");i.textContent="📱 Instagram Unfollow";i.style.cssText="margin:0 0 10px;color:#333;";s.appendChild(i);const r=document.createElement("div");r.textContent="Ready to scan";r.style.cssText="text-align:center;padding:8px;background:#f0f0f0;border-radius:8px;color:#666;font-size:12px;margin-bottom:10px;";s.appendChild(r);const c=document.createElement("div");c.style.cssText="width:100%;height:6px;background:#e0e0e0;border-radius:3px;margin-bottom:10px;overflow:hidden;display:none;";const a=document.createElement("div");a.style.cssText="height:100%;background:#667eea;width:0%;";c.appendChild(a),s.appendChild(c);const l=document.createElement("div");l.style.cssText="display:flex;gap:10px;flex-wrap:wrap;";const h=document.createElement("button");h.textContent="🔍 Scan";h.style.cssText="flex:1;min-width:100px;padding:10px;background:#667eea;color:white;border:0;border-radius:8px;font-weight:bold;cursor:pointer;";const u=document.createElement("button");u.textContent="✓ All";u.style.cssText="flex:1;min-width:80px;padding:10px;background:#667eea;color:white;border:0;border-radius:8px;font-weight:bold;cursor:pointer;display:none;";const d=document.createElement("button");d.textContent="✕ Clear";d.style.cssText="flex:1;min-width:80px;padding:10px;background:#e0e0e0;color:#333;border:0;border-radius:8px;font-weight:bold;cursor:pointer;display:none;";const m=document.createElement("button");m.textContent="Close";m.style.cssText="flex:1;min-width:80px;padding:10px;background:#e0e0e0;color:#333;border:0;border-radius:8px;font-weight:bold;cursor:pointer;";m.onclick=()=>t.remove(),l.appendChild(h),l.appendChild(u),l.appendChild(d),l.appendChild(m),s.appendChild(l),o.appendChild(s);const g=document.createElement("div");g.style.cssText="flex:1;overflow-y:auto;padding:0;";o.appendChild(g);const f=document.createElement("div");f.style.cssText="padding:15px;border-top:1px solid #e0e0e0;background:#f9f9f9;";const p=document.createElement("button");function y(){g.innerHTML="",n.filter(e=>!e.follows_viewer).forEach(n=>{const t=document.createElement("div"),o=e.has(n.id);t.style.cssText="display:flex;align-items:center;gap:12px;padding:12px;border-bottom:1px solid #e0e0e0;cursor:pointer;background:"+(o?"#f0f7ff":"white")+";border-left:4px solid "+(o?"#667eea":"transparent")+";transition:all 0.2s;",t.onmouseover=()=>t.style.background=o?"#f0f7ff":"#f9f9f9",t.onmouseout=()=>t.style.background=o?"#f0f7ff":"white";const s=document.createElement("img");s.src=n.profile_pic_url,s.style.cssText="width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0;";const i=document.createElement("div");i.style.cssText="flex:1;min-width:0;";const r=document.createElement("div");r.textContent="@"+n.username,r.style.cssText="font-weight:600;color:#333;font-size:13px;";const c=document.createElement("div");c.textContent="🔴 Not following back",c.style.cssText="color:#dc3545;font-size:11px;margin-top:2px;";i.appendChild(r),i.appendChild(c);const a=document.createElement("input");a.type="checkbox",a.checked=o,a.style.cssText="width:18px;height:18px;flex-shrink:0;cursor:pointer;",t.onclick=t=>{t.stopPropagation(),e.has(n.id)?e.delete(n.id):e.add(n.id),y(),p.textContent="🚀 Unfollow ("+e.size+")"},t.appendChild(s),t.appendChild(i),t.appendChild(a),g.appendChild(t)}),0===n.filter(e=>!e.follows_viewer).length&&n.length>0&&(e=>{const t=document.createElement("div");t.textContent="✅ Everyone follows you!",t.style.cssText="text-align:center;padding:20px;color:#666;",g.appendChild(t)})(0)}p.style.cssText="width:100%;padding:12px;background:#dc3545;color:white;border:0;border-radius:8px;font-weight:bold;cursor:pointer;display:none;",p.textContent="🚀 Unfollow (0)",f.appendChild(p),o.appendChild(f),h.onclick=async function(){h.disabled=!0;let t=null;try{c.style.display="block";for(;;){const o=await API.fetchFollowing(t);n.push(...o.edges.map(e=>e.node));const s=Math.round(n.length/1650*100);a.style.width=s+"%",r.textContent="Scanned: "+n.length,y(),o.page_info?.has_next_page?(t=o.page_info.end_cursor,await Utils.sleep(300)):(c.style.display="none",r.textContent="✅ "+n.length+" total ("+n.filter(e=>!e.follows_viewer).length+" not following back)",h.style.display="none",u.style.display="inline-block",d.style.display="inline-block",p.style.display="block")}catch(e){r.textContent="❌ "+e.message,h.disabled=!1}}},u.onclick=()=>{n.filter(e=>!e.follows_viewer).forEach(n=>e.add(n.id)),y(),p.textContent="🚀 Unfollow ("+e.size+")"},d.onclick=()=>{e.clear(),y(),p.textContent="🚀 Unfollow (0)"},p.onclick=async function(){if(0===e.size)return void alert("Select at least one user");if(!confirm("Unfollow "+e.size+" users?"))return;p.disabled=!0,c.style.display="block";let t=0;const o=e.size;for(const s of e)try{await API.unfollow(s),t++}catch(n){console.log(n)}r.textContent="Unfollowing... "+t+"/"+o,(t+1)%5==0?(r.textContent="Unfollowing... "+t+"/"+o+" (30s pause)",await Utils.sleep(30000)):await Utils.sleep(Utils.randomDelay(4e3,6e3));c.style.display="none",r.textContent="✅ "+t+" unfollowed",p.disabled=!1,e.clear(),n=[],g.innerHTML="",h.style.display="inline-block",u.style.display="none",d.style.display="none",p.style.display="none"}})();
+            </div>
+            <button class="copy-btn" onclick="copyCode()">📋 Copy Code</button>
+        </div>
+
+        <div class="step">
+            <span class="step-num">2</span>
+            <strong>Open instagram.com and open DevTools:</strong>
+            <ul>
+                <li><strong>Windows/Linux:</strong> Press <code>F12</code></li>
+                <li><strong>Mac:</strong> Press <code>Cmd + Option + I</code></li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <span class="step-num">3</span>
+            <strong>Click the "Console" tab</strong>
+        </div>
+
+        <div class="step">
+            <span class="step-num">4</span>
+            <strong>Paste the code into the console and press Enter</strong>
+        </div>
+
+        <div class="success">
+            <strong>✅ Done!</strong> The Instagram Unfollow panel will appear on top of Instagram. Click "Scan" to begin.
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; color: #666; font-size: 0.9em;">
+            <p>No hosting needed • No installation required • Runs locally in your browser</p>
+            <p>For bookmarklet method, see <strong>bookmarklet.html</strong></p>
+        </div>
+    </div>
+
+    <script>
+        function copyCode() {
+            const code = document.getElementById('codeArea').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = event.target;
+                btn.textContent = '✅ Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = '📋 Copy Code';
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(() => {
+                alert('Error copying. Please select and copy manually.');
+            });
+        }
+    </script>
+</body>
+</html>
