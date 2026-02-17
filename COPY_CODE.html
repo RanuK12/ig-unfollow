@@ -8,65 +8,86 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #0a0a0a;
             min-height: 100vh;
             padding: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: #e4e4e7;
         }
         .container {
-            background: white;
+            background: #141414;
             border-radius: 16px;
             padding: 40px;
             max-width: 800px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border: 1px solid #2a2a2a;
         }
         h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 2em;
+            color: #e4e4e7;
+            margin-bottom: 8px;
+            font-size: 1.8em;
         }
         .subtitle {
-            color: #666;
+            color: #71717a;
             margin-bottom: 30px;
-            font-size: 1.1em;
+            font-size: 1em;
+        }
+        .version {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+            vertical-align: middle;
         }
         .step {
-            margin: 20px 0;
-            padding: 15px;
-            background: #f9f9f9;
-            border-left: 4px solid #667eea;
-            border-radius: 4px;
+            margin: 16px 0;
+            padding: 16px;
+            background: #1c1c1c;
+            border-left: 3px solid #3b82f6;
+            border-radius: 0 8px 8px 0;
         }
         .step-num {
             display: inline-block;
-            width: 32px;
-            height: 32px;
-            background: #667eea;
+            width: 28px;
+            height: 28px;
+            background: #3b82f6;
             color: white;
             border-radius: 50%;
             text-align: center;
-            line-height: 32px;
+            line-height: 28px;
             font-weight: 700;
+            font-size: 13px;
             margin-right: 10px;
         }
+        .step strong {
+            color: #e4e4e7;
+        }
         .copy-area {
-            background: #1e1e1e;
-            color: #0f0;
-            padding: 15px;
+            background: #0a0a0a;
+            color: #3b82f6;
+            padding: 16px;
             border-radius: 8px;
             overflow: hidden;
             margin: 15px 0;
-            font-family: monospace;
-            font-size: 11px;
+            font-family: 'SF Mono', 'Monaco', 'Menlo', monospace;
+            font-size: 10px;
             line-height: 1.5;
-            max-height: 300px;
+            max-height: 250px;
             overflow-y: auto;
             word-break: break-all;
+            border: 1px solid #2a2a2a;
         }
+        .copy-area::-webkit-scrollbar { width: 6px; }
+        .copy-area::-webkit-scrollbar-track { background: #0a0a0a; }
+        .copy-area::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }
         .copy-btn {
-            background: #667eea;
+            background: #3b82f6;
             color: white;
             border: none;
             padding: 12px 24px;
@@ -74,55 +95,94 @@
             font-weight: 600;
             cursor: pointer;
             font-size: 14px;
-            transition: all 0.3s;
+            transition: all 0.2s;
             margin-top: 10px;
         }
         .copy-btn:hover {
-            background: #764ba2;
-            transform: translateY(-2px);
+            background: #2563eb;
+            transform: translateY(-1px);
         }
         .copy-btn.copied {
-            background: #28a745;
+            background: #22c55e;
         }
         .warning {
-            background: #f8d7da;
-            border-left: 4px solid #dc3545;
-            padding: 15px;
-            border-radius: 8px;
-            color: #721c24;
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 3px solid #ef4444;
+            padding: 14px 16px;
+            border-radius: 0 8px 8px 0;
+            color: #fca5a5;
             margin: 20px 0;
+            font-size: 13px;
         }
         code {
-            background: #f4f4f4;
+            background: #1c1c1c;
             padding: 2px 6px;
             border-radius: 4px;
             font-family: monospace;
+            color: #3b82f6;
         }
         .success {
-            background: #d4edda;
-            border-left: 4px solid #28a745;
-            padding: 15px;
-            border-radius: 8px;
-            color: #155724;
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 3px solid #22c55e;
+            padding: 14px 16px;
+            border-radius: 0 8px 8px 0;
+            color: #86efac;
             margin: 15px 0;
+            font-size: 13px;
+        }
+        ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+        li {
+            color: #a1a1aa;
+            line-height: 1.8;
+            font-size: 13px;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 16px 0;
+        }
+        .feature {
+            background: #1c1c1c;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #a1a1aa;
+            border: 1px solid #2a2a2a;
+        }
+        .feature strong {
+            color: #e4e4e7;
+            display: block;
+            margin-bottom: 2px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📋 Copy Instagram Unfollow Code</h1>
+        <h1>Instagram Unfollow<span class="version">v2.0</span></h1>
         <p class="subtitle">No hosting, no downloads - pure copy & paste</p>
 
+        <div class="features">
+            <div class="feature"><strong>Anti-Ban</strong>Smart delays, daily limits, exponential backoff</div>
+            <div class="feature"><strong>Whitelist</strong>Protect accounts from being unfollowed</div>
+            <div class="feature"><strong>Search</strong>Filter by username or full name</div>
+            <div class="feature"><strong>Export</strong>Download list as CSV or JSON</div>
+            <div class="feature"><strong>Pause/Resume</strong>Control the unfollow process</div>
+            <div class="feature"><strong>Activity Log</strong>Track everything that happens</div>
+        </div>
+
         <div class="warning">
-            <strong>⚠️ Warning:</strong> This violates Instagram's Terms of Service. You may face action blocks, restrictions, or account suspension. Use at your own risk.
+            <strong>Warning:</strong> This violates Instagram's Terms of Service. You may face action blocks, restrictions, or account suspension. Use at your own risk. Built-in safety delays minimize risk but cannot eliminate it.
         </div>
 
         <div class="step">
             <span class="step-num">1</span>
-            <strong>Select and copy the code below:</strong>
-            <div class="copy-area" id="codeArea">javascript:(async()=>{const delays={unfollow:[4000,6000],pause:30000,batch:300};const Utils={getCookie:n=>{const e="; "+document.cookie,t=e.split("; "+n+"=");return 2===t.length?t.pop().split(";").shift():null},getUserID:()=>Utils.getCookie("ds_user_id"),getCSRFToken:()=>Utils.getCookie("csrftoken"),sleep:n=>new Promise(e=>setTimeout(e,n)),randomDelay:(n,e)=>Math.floor(Math.random()*(e-n)+n)},API={async fetchFollowing(n){const e=Utils.getUserID();if(!e)throw new Error("Not authenticated");const t={id:e,include_reel:!0,fetch_mutual:!1,first:50};n&&(t.after=n);const o="https://www.instagram.com/graphql/query/?query_hash=3dec7e2c57367ef3da3d987d89f9dbc8&variables="+JSON.stringify(t),s=await fetch(o,{credentials:"include"});if(!s.ok)throw new Error("HTTP "+s.status);const i=await s.json();if(i.errors)throw new Error(i.errors[0]?.message||"API error");return i.data.user.edge_follow},async unfollow(n){const e=Utils.getCSRFToken();if(!e)throw new Error("No CSRF");const t=await fetch("https://www.instagram.com/web/friendships/"+n+"/unfollow/",{method:"POST",headers:{"X-CSRFToken":e,"Content-Type":"application/x-www-form-urlencoded"},credentials:"include"});if(!t.ok)throw new Error("HTTP "+t.status);return await t.json()}};let n=[],e=new Set;const t=document.createElement("div");t.style.cssText="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;z-index:99999;font-family:system-ui,sans-serif;";document.body.appendChild(t);const o=document.createElement("div");o.style.cssText="background:white;border-radius:12px;width:90%;max-width:700px;max-height:85vh;display:flex;flex-direction:column;";t.appendChild(o);const s=document.createElement("div");s.style.cssText="padding:20px;border-bottom:1px solid #e0e0e0;";const i=document.createElement("h2");i.textContent="📱 Instagram Unfollow";i.style.cssText="margin:0 0 10px;color:#333;";s.appendChild(i);const r=document.createElement("div");r.textContent="Ready to scan";r.style.cssText="text-align:center;padding:8px;background:#f0f0f0;border-radius:8px;color:#666;font-size:12px;margin-bottom:10px;";s.appendChild(r);const c=document.createElement("div");c.style.cssText="width:100%;height:6px;background:#e0e0e0;border-radius:3px;margin-bottom:10px;overflow:hidden;display:none;";const a=document.createElement("div");a.style.cssText="height:100%;background:#667eea;width:0%;";c.appendChild(a),s.appendChild(c);const l=document.createElement("div");l.style.cssText="display:flex;gap:10px;flex-wrap:wrap;";const h=document.createElement("button");h.textContent="🔍 Scan";h.style.cssText="flex:1;min-width:100px;padding:10px;background:#667eea;color:white;border:0;border-radius:8px;font-weight:bold;cursor:pointer;";const u=document.createElement("button");u.textContent="✓ All";u.style.cssText="flex:1;min-width:80px;padding:10px;background:#667eea;color:white;border:0;border-radius:8px;font-weight:bold;cursor:pointer;display:none;";const d=document.createElement("button");d.textContent="✕ Clear";d.style.cssText="flex:1;min-width:80px;padding:10px;background:#e0e0e0;color:#333;border:0;border-radius:8px;font-weight:bold;cursor:pointer;display:none;";const m=document.createElement("button");m.textContent="Close";m.style.cssText="flex:1;min-width:80px;padding:10px;background:#e0e0e0;color:#333;border:0;border-radius:8px;font-weight:bold;cursor:pointer;";m.onclick=()=>t.remove(),l.appendChild(h),l.appendChild(u),l.appendChild(d),l.appendChild(m),s.appendChild(l),o.appendChild(s);const g=document.createElement("div");g.style.cssText="flex:1;overflow-y:auto;padding:0;";o.appendChild(g);const f=document.createElement("div");f.style.cssText="padding:15px;border-top:1px solid #e0e0e0;background:#f9f9f9;";const p=document.createElement("button");function y(){g.innerHTML="",n.filter(e=>!e.follows_viewer).forEach(n=>{const t=document.createElement("div"),o=e.has(n.id);t.style.cssText="display:flex;align-items:center;gap:12px;padding:12px;border-bottom:1px solid #e0e0e0;cursor:pointer;background:"+(o?"#f0f7ff":"white")+";border-left:4px solid "+(o?"#667eea":"transparent")+";transition:all 0.2s;",t.onmouseover=()=>t.style.background=o?"#f0f7ff":"#f9f9f9",t.onmouseout=()=>t.style.background=o?"#f0f7ff":"white";const s=document.createElement("img");s.src=n.profile_pic_url,s.style.cssText="width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0;";const i=document.createElement("div");i.style.cssText="flex:1;min-width:0;";const r=document.createElement("div");r.textContent="@"+n.username,r.style.cssText="font-weight:600;color:#333;font-size:13px;";const c=document.createElement("div");c.textContent="🔴 Not following back",c.style.cssText="color:#dc3545;font-size:11px;margin-top:2px;";i.appendChild(r),i.appendChild(c);const a=document.createElement("input");a.type="checkbox",a.checked=o,a.style.cssText="width:18px;height:18px;flex-shrink:0;cursor:pointer;",t.onclick=t=>{t.stopPropagation(),e.has(n.id)?e.delete(n.id):e.add(n.id),y(),p.textContent="🚀 Unfollow ("+e.size+")"},t.appendChild(s),t.appendChild(i),t.appendChild(a),g.appendChild(t)}),0===n.filter(e=>!e.follows_viewer).length&&n.length>0&&(e=>{const t=document.createElement("div");t.textContent="✅ Everyone follows you!",t.style.cssText="text-align:center;padding:20px;color:#666;",g.appendChild(t)})(0)}p.style.cssText="width:100%;padding:12px;background:#dc3545;color:white;border:0;border-radius:8px;font-weight:bold;cursor:pointer;display:none;",p.textContent="🚀 Unfollow (0)",f.appendChild(p),o.appendChild(f),h.onclick=async function(){h.disabled=!0;let t=null;try{c.style.display="block";for(;;){const o=await API.fetchFollowing(t);n.push(...o.edges.map(e=>e.node));const s=Math.round(n.length/1650*100);a.style.width=s+"%",r.textContent="Scanned: "+n.length,y(),o.page_info?.has_next_page?(t=o.page_info.end_cursor,await Utils.sleep(300)):(c.style.display="none",r.textContent="✅ "+n.length+" total ("+n.filter(e=>!e.follows_viewer).length+" not following back)",h.style.display="none",u.style.display="inline-block",d.style.display="inline-block",p.style.display="block")}catch(e){r.textContent="❌ "+e.message,h.disabled=!1}}},u.onclick=()=>{n.filter(e=>!e.follows_viewer).forEach(n=>e.add(n.id)),y(),p.textContent="🚀 Unfollow ("+e.size+")"},d.onclick=()=>{e.clear(),y(),p.textContent="🚀 Unfollow (0)"},p.onclick=async function(){if(0===e.size)return void alert("Select at least one user");if(!confirm("Unfollow "+e.size+" users?"))return;p.disabled=!0,c.style.display="block";let t=0;const o=e.size;for(const s of e)try{await API.unfollow(s),t++}catch(n){console.log(n)}r.textContent="Unfollowing... "+t+"/"+o,(t+1)%5==0?(r.textContent="Unfollowing... "+t+"/"+o+" (30s pause)",await Utils.sleep(30000)):await Utils.sleep(Utils.randomDelay(4e3,6e3));c.style.display="none",r.textContent="✅ "+t+" unfollowed",p.disabled=!1,e.clear(),n=[],g.innerHTML="",h.style.display="inline-block",u.style.display="none",d.style.display="none",p.style.display="none"}})();
-            </div>
-            <button class="copy-btn" onclick="copyCode()">📋 Copy Code</button>
+            <strong>Copy the code below:</strong>
+            <div class="copy-area" id="codeArea"></div>
+            <button class="copy-btn" onclick="copyCode()">Copy Code</button>
         </div>
 
         <div class="step">
@@ -141,32 +201,42 @@
 
         <div class="step">
             <span class="step-num">4</span>
-            <strong>Paste the code into the console and press Enter</strong>
+            <strong>Paste the code and press Enter</strong>
         </div>
 
         <div class="success">
-            <strong>✅ Done!</strong> The Instagram Unfollow panel will appear on top of Instagram. Click "Scan" to begin.
+            <strong>Done!</strong> The dark-themed panel will appear. Click "Scan" to begin. The tool scans both your following and followers lists to identify non-followers.
         </div>
 
-        <div style="text-align: center; margin-top: 40px; color: #666; font-size: 0.9em;">
-            <p>No hosting needed • No installation required • Runs locally in your browser</p>
-            <p>For bookmarklet method, see <strong>bookmarklet.html</strong></p>
+        <div style="text-align: center; margin-top: 30px; color: #71717a; font-size: 0.85em;">
+            <p>No hosting needed &bull; No installation required &bull; Runs locally in your browser</p>
         </div>
     </div>
 
     <script>
+        // Load the minified code
+        const minCode = `(async()=>{class e extends Error{constructor(e){super(e),this.name="RateLimitError"}}class t extends Error{constructor(e){super(e),this.name="ChallengeError"}}const n="#0a0a0a",o="#141414",i="#1c1c1c",s="#222",a="#1a2744",l="#2a2a2a",r="#333",d="#3b82f6",c="#ef4444",p="#22c55e",u="#f59e0b",h="#e4e4e7",f="#a1a1aa",g="#71717a",m="rgba(0,0,0,0.85)",x={getCookie(e){const t=("; "+document.cookie).split("; "+e+"=");return 2===t.length?t.pop().split(";").shift():null},getUserID:()=>x.getCookie("ds_user_id"),getCSRFToken:()=>x.getCookie("csrftoken"),sleep:e=>new Promise(t=>setTimeout(t,e)),randomDelay:(e,t)=>Math.floor(Math.random()*(t-e)+e),formatNum:e=>e.toLocaleString("en-US")},y={config:{unfollowDelay:[8e3,15e3],scanDelay:[400,800],batchPause:[12e4,3e5],batchSize:10,dailyLimit:120,sessionLimit:60,initialBackoff:6e4,maxBackoff:6e5,backoffMultiplier:2},state:{sessionCount:0,consecutiveErrors:0,currentBackoff:6e4,isPaused:!1,pauseResolve:null,isCancelled:!1},getDailyCount(){try{const e=JSON.parse(localStorage.getItem("ig_unf_daily")||"{}");return e.date===(new Date).toISOString().slice(0,10)&&e.count||0}catch{return 0}},incrementDaily(){try{const e=(new Date).toISOString().slice(0,10),t=JSON.parse(localStorage.getItem("ig_unf_daily")||"{}"),n=t.date===e?(t.count||0)+1:1;localStorage.setItem("ig_unf_daily",JSON.stringify({date:e,count:n}))}catch{}},canContinue(){return this.state.isCancelled?{ok:!1,reason:"Cancelled"}:this.getDailyCount()>=this.config.dailyLimit?{ok:!1,reason:"Daily limit reached ("+this.config.dailyLimit+")"}:this.state.sessionCount>=this.config.sessionLimit?{ok:!1,reason:"Session limit reached ("+this.config.sessionLimit+"). Restart later."}:{ok:!0}},getNextDelay(){const[e,t]=this.config.unfollowDelay;return Math.random()<.1?x.randomDelay(2e4,4e4):x.randomDelay(e,t)},shouldBatchPause(){return this.state.sessionCount>0&&this.state.sessionCount%this.config.batchSize===0},getBatchPause(){return x.randomDelay(...this.config.batchPause)},handleError(e){this.state.consecutiveErrors++;const n=e instanceof t,o=Math.min(this.state.currentBackoff*this.state.consecutiveErrors,this.config.maxBackoff);return this.state.currentBackoff*=this.config.backoffMultiplier,{delay:o,fatal:n}},resetErrors(){this.state.consecutiveErrors=0,this.state.currentBackoff=this.config.initialBackoff},pause(){this.state.isPaused=!0},resume(){this.state.isPaused=!1,this.state.pauseResolve&&(this.state.pauseResolve(),this.state.pauseResolve=null)},cancel(){this.state.isCancelled=!0,this.resume()},reset(){this.state.sessionCount=0,this.state.consecutiveErrors=0,this.state.currentBackoff=this.config.initialBackoff,this.state.isPaused=!1,this.state.isCancelled=!1,this.state.pauseResolve=null},async waitIfPaused(){for(;this.state.isPaused&&!this.state.isCancelled;)await new Promise(e=>{this.state.pauseResolve=e})}},b={getHeaders(){const e=x.getCSRFToken();if(!e)throw new Error("No CSRF token. Make sure you are logged in.");return{"X-CSRFToken":e,"X-IG-App-ID":"936619743392459","X-IG-WWW-Claim":sessionStorage.getItem("www-claim-v2")||"0","X-Requested-With":"XMLHttpRequest"}},async request(n,o={}){const i=await fetch(n,{credentials:"include",...o});if(429===i.status)throw new e("Rate limited (429)");if(400===i.status){let e;try{e=await i.json()}catch{e={}}if("challenge_required"===e.message)throw new t("Challenge required");throw new Error(e.message||"Bad request")}if(!i.ok)throw new Error("HTTP "+i.status);return i.json()},async fetchAllFollowing(e,t){const n=[];let o=null;do{let i="https://www.instagram.com/api/v1/friendships/"+e+"/following/?count=100";o&&(i+="&max_id="+o);const s=await this.request(i,{headers:this.getHeaders()});n.push(...s.users||[]),o=s.next_max_id||null,t&&t(n.length,!!o),o&&await x.sleep(x.randomDelay(...y.config.scanDelay))}while(o);return n},async fetchAllFollowers(e,t){const n=[];let o=null;do{let i="https://www.instagram.com/api/v1/friendships/"+e+"/followers/?count=100";o&&(i+="&max_id="+o);const s=await this.request(i,{headers:this.getHeaders()});n.push(...s.users||[]),o=s.next_max_id||null,t&&t(n.length,!!o),o&&await x.sleep(x.randomDelay(...y.config.scanDelay))}while(o);return n},async unfollow(e){return this.request("https://www.instagram.com/api/v1/friendships/destroy/"+e+"/",{method:"POST",headers:{...this.getHeaders(),"Content-Type":"application/x-www-form-urlencoded"}})}},w={KEY:"ig_unf_whitelist",_set:null,load(){try{this._set=new Set(JSON.parse(localStorage.getItem(this.KEY)||"[]").map(String))}catch{this._set=new Set}},save(){try{localStorage.setItem(this.KEY,JSON.stringify([...this._set]))}catch{}},has(e){return this._set.has(String(e))},add(e){this._set.add(String(e)),this.save()},remove(e){this._set.delete(String(e)),this.save()},toggle(e){this.has(e)?this.remove(e):this.add(e)},count(){return this._set.size}};w.load();const k={KEY:"ig_unf_log",MAX:500,entries:[],load(){try{this.entries=JSON.parse(localStorage.getItem(this.KEY)||"[]")}catch{this.entries=[]}},save(){this.entries.length>this.MAX&&(this.entries=this.entries.slice(-this.MAX));try{localStorage.setItem(this.KEY,JSON.stringify(this.entries))}catch{}},add(e,t={}){this.entries.push({type:e,ts:Date.now(),...t}),this.save()},recent(e=100){return this.entries.slice(-e).reverse()},clear(){this.entries=[],this.save()}};k.load();const v={download(e,t,n){const o=new Blob([e],{type:n}),i=document.createElement("a");i.href=URL.createObjectURL(o),i.download=t,i.click(),URL.revokeObjectURL(i.href)},csv(e){const t=["username,full_name,user_id,profile_url"];e.forEach(e=>{const n=e.pk||e.id;t.push(e.username+',"'+(e.full_name||"").replace(/"/g,'""')+'",'+n+",https://instagram.com/"+e.username)}),this.download(t.join("\\n"),"non_followers.csv","text/csv")},json(e){const t=e.map(e=>({username:e.username,full_name:e.full_name||"",id:e.pk||e.id,url:"https://instagram.com/"+e.username}));this.download(JSON.stringify(t,null,2),"non_followers.json","application/json")}};function C(e,t,n={}){const o=document.createElement(e);return t&&(o.style.cssText=t),n.text&&(o.textContent=n.text),n.html&&(o.innerHTML=n.html),n.class&&(o.className=n.class),n.type&&(o.type=n.type),n.placeholder&&(o.placeholder=n.placeholder),o}let $=[],S=[],E=[],_=new Set,z="",N="list",L=!1;const D=document.createElement("style");D.textContent=\`\\n    @keyframes ig-unf-pulse { 0%,100%{opacity:.4} 50%{opacity:1} }\\n    @keyframes ig-unf-slide { 0%{transform:translateX(-100%)} 100%{transform:translateX(300%)} }\\n    .ig-unf-btn{transition:all .15s;cursor:pointer;border:0;font-weight:600;font-size:13px;border-radius:8px;padding:9px 16px;}\\n    .ig-unf-btn:hover{filter:brightness(1.15);}\\n    .ig-unf-btn:active{transform:scale(.97);}\\n    .ig-unf-btn:disabled{opacity:.5;cursor:not-allowed;filter:none;transform:none;}\\n    .ig-unf-tab{padding:8px 16px;border:0;background:transparent;color:\${g};cursor:pointer;font-size:13px;font-weight:500;border-bottom:2px solid transparent;transition:all .15s;}\\n    .ig-unf-tab:hover{color:\${f};}\\n    .ig-unf-tab.active{color:\${d};border-bottom-color:\${d};}\\n    .ig-unf-scroll::-webkit-scrollbar{width:6px;}\\n    .ig-unf-scroll::-webkit-scrollbar-track{background:\${n};}\\n    .ig-unf-scroll::-webkit-scrollbar-thumb{background:\${l};border-radius:3px;}\\n    .ig-unf-scroll::-webkit-scrollbar-thumb:hover{background:\${r};}\\n  \`,document.head.appendChild(D);const M=C("div",\`position:fixed;top:0;left:0;width:100%;height:100%;background:\${m};display:flex;align-items:center;justify-content:center;z-index:99999;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;padding:16px;box-sizing:border-box;\`);document.body.appendChild(M);const P=C("div",\`background:\${n};border-radius:16px;width:100%;max-width:720px;height:90vh;display:flex;flex-direction:column;box-shadow:0 25px 80px rgba(0,0,0,.6);border:1px solid \${l};overflow:hidden;\`);M.appendChild(P);const R=C("div","padding:16px 20px 0;flex-shrink:0;");P.appendChild(R);const I=C("div","display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;"),T=C("div",\`font-size:18px;font-weight:700;color:\${h};\`,{text:"Instagram Unfollow"}),F=C("button",\`background:\${i};color:\${g};border:0;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;line-height:1;\`,{html:"&times;"});F.onclick=()=>{M.remove(),D.remove()},I.appendChild(T),I.appendChild(F),R.appendChild(I);const B=C("div",\`display:flex;gap:12px;flex-wrap:wrap;padding:10px 14px;background:\${o};border-radius:8px;margin-bottom:12px;font-size:12px;color:\${f};display:none;\`);function O(){const e=y.getDailyCount(),t=y.config.dailyLimit;B.style.display="flex",B.innerHTML="";[{label:"Following",value:x.formatNum($.length),color:d},{label:"Non-followers",value:x.formatNum(S.length),color:c},{label:"Protected",value:x.formatNum(w.count()),color:u},{label:"Today",value:e+"/"+t,color:e>=t?c:p}].forEach(e=>{const t=C("span","display:flex;align-items:center;gap:4px;");t.innerHTML='<span style="width:6px;height:6px;border-radius:50%;background:'+e.color+';display:inline-block;"></span><span style="color:'+g+';">'+e.label+':</span> <span style="color:'+h+';font-weight:600;">'+e.value+"</span>",B.appendChild(t)})}R.appendChild(B);const U=C("div",\`text-align:center;padding:8px 12px;background:\${o};border-radius:8px;color:\${f};font-size:12px;margin-bottom:12px;\`,{text:"Ready to scan. Make sure you are on instagram.com"});function j(e){U.textContent=e}R.appendChild(U);const A=C("div",\`width:100%;height:4px;background:\${o};border-radius:2px;margin-bottom:12px;overflow:hidden;display:none;\`),H=C("div",\`height:100%;background:\${d};width:0%;border-radius:2px;transition:width .3s;\`);function q(e,t=!1){A.style.display=e?"block":"none",t?(H.style.width="30%",H.style.animation="ig-unf-slide 1.5s ease-in-out infinite"):H.style.animation="none"}function X(e){H.style.animation="none",H.style.width=Math.min(100,Math.round(e))+"%"}A.appendChild(H),R.appendChild(A);const J=C("input",\`width:100%;padding:10px 14px;background:\${o};color:\${h};border:1px solid \${l};border-radius:8px;font-size:13px;outline:none;margin-bottom:12px;box-sizing:border-box;display:none;\`,{placeholder:"Search by username or name..."});J.addEventListener("focus",()=>{J.style.borderColor=d}),J.addEventListener("blur",()=>{J.style.borderColor=l}),J.addEventListener("input",e=>{z=e.target.value.toLowerCase(),he()}),R.appendChild(J);const K=C("div",\`display:flex;border-bottom:1px solid \${l};margin-bottom:0;display:none;\`),W={};["list","whitelist","log"].forEach(e=>{const t=C("button","",{text:{list:"Non-Followers",whitelist:"Whitelist",log:"Activity"}[e]});t.className="ig-unf-tab"+("list"===e?" active":""),t.onclick=()=>function(e){N=e,Object.keys(W).forEach(t=>{W[t].className="ig-unf-tab"+(t===e?" active":""),te[t].style.display=t===e?"block":"none"}),"list"===e?ae():"whitelist"===e?le():"log"===e&&re()}(e),W[e]=t,K.appendChild(t)}),R.appendChild(K);const Y=C("div","display:flex;gap:8px;flex-wrap:wrap;padding:12px 0 0;"),G=C("button",\`background:\${d};color:white;\`,{text:"Scan"});G.className="ig-unf-btn";const V=C("button",\`background:\${i};color:\${h};display:none;\`,{text:"Select All"});V.className="ig-unf-btn";const Q=C("button",\`background:\${i};color:\${f};display:none;\`,{text:"Clear"});Q.className="ig-unf-btn";const Z=C("button",\`background:\${i};color:\${f};display:none;\`,{text:"Export"});Z.className="ig-unf-btn",[G,V,Q,Z].forEach(e=>Y.appendChild(e)),R.appendChild(Y);const ee=C("div","flex:1;overflow:hidden;position:relative;");P.appendChild(ee);const te={};["list","whitelist","log"].forEach(e=>{const t=C("div","width:100%;height:100%;overflow-y:auto;"+("list"!==e?"display:none;":""));t.className="ig-unf-scroll",te[e]=t,ee.appendChild(t)});const ne=68,oe=5,ie=C("div","position:relative;");te.list.appendChild(ie);let se=null;function ae(){const e=te.list,t=E,n=t.length*ne;ie.style.height=n+"px";const o=e.scrollTop,i=e.clientHeight,c=Math.max(0,Math.floor(o/ne)-oe),p=Math.min(t.length,Math.ceil((o+i)/ne)+oe);if(ie.innerHTML="",0===t.length&&$.length>0){const e=C("div",\`text-align:center;padding:40px 20px;color:\${g};font-size:14px;\`,{text:z?'No results for "'+z+'"':"Everyone follows you back!"});return ie.style.height="auto",void ie.appendChild(e)}for(let e=c;e<p;e++){const n=t[e],o=String(n.pk||n.id),i=_.has(o),c=w.has(o),p=C("div",\`display:flex;align-items:center;gap:12px;padding:10px 20px;position:absolute;top:\${e*ne}px;width:100%;box-sizing:border-box;cursor:pointer;background:\${i?a:"transparent"};border-left:3px solid \${i?d:"transparent"};transition:background .1s;\`);p.onmouseenter=()=>{i||(p.style.background=s)},p.onmouseleave=()=>{i||(p.style.background="transparent")};const f=C("img",\`width:42px;height:42px;border-radius:50%;object-fit:cover;flex-shrink:0;background:\${l};\`);f.loading="lazy",f.src=n.profile_pic_url,f.onerror=()=>{f.style.background=r};const m=C("div","flex:1;min-width:0;"),x=C("div",\`font-weight:600;color:\${h};font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;\`,{text:"@"+n.username});if(m.appendChild(x),n.full_name){const e=C("div",\`color:\${g};font-size:11px;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;\`,{text:n.full_name});m.appendChild(e)}if(p.appendChild(f),p.appendChild(m),c){const e=C("span",\`color:\${u};font-size:11px;flex-shrink:0;background:rgba(245,158,11,.15);padding:3px 8px;border-radius:12px;\`,{text:"Protected"});p.appendChild(e),p.style.opacity="0.6",p.onclick=()=>{confirm("Remove @"+n.username+" from whitelist?")&&(w.remove(o),he(),O())}}else{const e=C("input",\`width:18px;height:18px;flex-shrink:0;accent-color:\${d};cursor:pointer;\`);e.type="checkbox",e.checked=i,p.appendChild(e);const t=C("button",\`background:transparent;border:0;color:\${g};cursor:pointer;font-size:14px;padding:4px;flex-shrink:0;opacity:0;transition:opacity .15s;\`,{text:"\\u{1F6E1}"});t.title="Add to whitelist",p.appendChild(t),p.onmouseenter=()=>{t.style.opacity="1",i||(p.style.background=s)},p.onmouseleave=()=>{t.style.opacity="0",i||(p.style.background="transparent")},t.onclick=e=>{e.stopPropagation(),w.add(o),_.delete(o),he(),O(),ue()},p.onclick=e=>{e.target!==t&&(i?_.delete(o):_.add(o),ue(),ae())}}ie.appendChild(p)}}function le(){const e=te.whitelist;e.innerHTML="";const t=w._set;0!==t.size?t.forEach(t=>{const n=$.find(e=>String(e.pk||e.id)===t),o=C("div",\`display:flex;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid \${l};\`);if(n){const e=C("img",\`width:36px;height:36px;border-radius:50%;object-fit:cover;background:\${l};\`);e.src=n.profile_pic_url,o.appendChild(e);const t=C("div","flex:1;");t.appendChild(C("div",\`color:\${h};font-size:13px;font-weight:600;\`,{text:"@"+n.username})),n.full_name&&t.appendChild(C("div",\`color:\${g};font-size:11px;\`,{text:n.full_name})),o.appendChild(t)}else o.appendChild(C("div",\`flex:1;color:\${f};font-size:13px;\`,{text:"User ID: "+t}));const s=C("button","",{text:"Remove"});s.className="ig-unf-btn",s.style.cssText+=\`background:\${i};color:\${c};font-size:11px;padding:5px 12px;\`,s.onclick=()=>{w.remove(t),le(),he(),O()},o.appendChild(s),e.appendChild(o)}):e.appendChild(C("div",\`text-align:center;padding:40px 20px;color:\${g};font-size:14px;\`,{text:"No protected users. Click the shield icon on any user to protect them."}))}function re(){const e=te.log;e.innerHTML="";const t=k.recent(100);if(0===t.length)return void e.appendChild(C("div",\`text-align:center;padding:40px 20px;color:\${g};font-size:14px;\`,{text:"No activity yet."}));const n=C("div",\`padding:10px 20px;border-bottom:1px solid \${l};text-align:right;\`),o=C("button","",{text:"Clear Log"});o.className="ig-unf-btn",o.style.cssText+=\`background:\${i};color:\${g};font-size:11px;padding:5px 12px;\`,o.onclick=()=>{k.clear(),re()},n.appendChild(o),e.appendChild(n);const s={unfollow:p,scan:d,error:c,rate_limit:u,pause:u,cancel:g},a={unfollow:"\\u2713",scan:"\\u{1F50D}",error:"\\u2717",rate_limit:"\\u26A0",pause:"\\u23F8",cancel:"\\u25A0"};t.forEach(t=>{const n=C("div",\`display:flex;align-items:flex-start;gap:10px;padding:8px 20px;border-bottom:1px solid \${l};font-size:12px;\`),o=C("span",\`color:\${s[t.type]||g};font-size:14px;flex-shrink:0;margin-top:1px;\`,{text:a[t.type]||"-"});n.appendChild(o);const i=C("div","flex:1;");let r=t.type;"unfollow"===t.type?r="Unfollowed @"+(t.username||t.userId):"scan"===t.type?r="Scan: "+(t.following||0)+" following, "+(t.nonFollowers||0)+" non-followers":"error"===t.type?r="Error: "+(t.message||"Unknown"):"rate_limit"===t.type?r="Rate limited - backed off":"pause"===t.type&&(r="Paused: "+(t.reason||"")),i.appendChild(C("div",\`color:\${h};\`,{text:r}));const d=new Date(t.ts);i.appendChild(C("div",\`color:\${g};font-size:11px;margin-top:2px;\`,{text:d.toLocaleDateString()+" "+d.toLocaleTimeString()})),n.appendChild(i),e.appendChild(n)})}te.list.addEventListener("scroll",()=>{se&&cancelAnimationFrame(se),se=requestAnimationFrame(ae)});const de=C("div",\`padding:12px 20px;border-top:1px solid \${l};flex-shrink:0;display:flex;gap:8px;\`);P.appendChild(de);const ce=C("button",\`flex:1;background:\${c};color:white;display:none;font-size:14px;\`,{text:"Unfollow (0)"});ce.className="ig-unf-btn";const pe=C("button",\`background:\${i};color:\${u};display:none;min-width:90px;\`,{text:"Pause"});function ue(){ce.textContent="Unfollow ("+_.size+")"}function he(){let e=S.filter(e=>!w.has(String(e.pk||e.id)));z&&(e=e.filter(e=>e.username.toLowerCase().includes(z)||e.full_name&&e.full_name.toLowerCase().includes(z))),E=e,"list"===N&&ae()}function fe(e){const t=e?"inline-flex":"none";V.style.display=t,Q.style.display=t,Z.style.display=t,J.style.display=e?"block":"none",K.style.display=e?"flex":"none",ce.style.display=e?"block":"none",G.style.display=e?"none":"inline-flex"}pe.className="ig-unf-btn",de.appendChild(ce),de.appendChild(pe),G.onclick=async()=>{G.disabled=!0,q(!0,!0);try{const e=x.getUserID();if(!e)throw new Error("Not logged in. Open instagram.com and log in first.");j("Scanning who you follow...");const t=await b.fetchAllFollowing(e,(e,t)=>{j("Following: "+x.formatNum(e)+(t?"...":" done"))});j("Scanning your followers...");const n=await b.fetchAllFollowers(e,(e,t)=>{j("Followers: "+x.formatNum(e)+(t?"...":" done"))}),o=new Set(n.map(e=>String(e.pk||e.id)));$=t,S=t.filter(e=>!o.has(String(e.pk||e.id))),k.add("scan",{following:t.length,followers:n.length,nonFollowers:S.length}),q(!1),j(x.formatNum(t.length)+" following, "+x.formatNum(S.length)+" don't follow back"),O(),he(),fe(!0)}catch(t){q(!1),j(t instanceof e?"Rate limited. Wait a few minutes and try again.":"Error: "+t.message),G.disabled=!1}},V.onclick=()=>{E.forEach(e=>{const t=String(e.pk||e.id);w.has(t)||_.add(t)}),ue(),ae()},Q.onclick=()=>{_.clear(),ue(),ae()},Z.onclick=()=>{const e=C("div",\`position:absolute;bottom:100%;left:0;background:\${o};border:1px solid \${l};border-radius:8px;overflow:hidden;z-index:10;box-shadow:0 4px 20px rgba(0,0,0,.4);\`),t=C("div",\`padding:10px 20px;color:\${h};cursor:pointer;font-size:13px;white-space:nowrap;\`,{text:"Export CSV"}),n=C("div",\`padding:10px 20px;color:\${h};cursor:pointer;font-size:13px;white-space:nowrap;border-top:1px solid \${l};\`,{text:"Export JSON"});t.onmouseenter=()=>{t.style.background=s},t.onmouseleave=()=>{t.style.background="transparent"},n.onmouseenter=()=>{n.style.background=s},n.onmouseleave=()=>{n.style.background="transparent"},t.onclick=()=>{v.csv(E),e.remove()},n.onclick=()=>{v.json(E),e.remove()},e.appendChild(t),e.appendChild(n),Z.style.position="relative",Z.appendChild(e),setTimeout(()=>document.addEventListener("click",function t(){e.remove(),document.removeEventListener("click",t)},{once:!0}),10)},pe.onclick=()=>{y.state.isPaused?(y.resume(),pe.textContent="Pause",pe.style.color=u):(y.pause(),pe.textContent="Resume",pe.style.color=p,j("Paused. Click Resume to continue."))},ce.onclick=async()=>{if(0===_.size)return void j("Select at least one user.");if(!confirm("Unfollow "+_.size+" users? This may take a while due to safety delays."))return;L=!0,y.reset(),ce.disabled=!0,pe.style.display="inline-flex",q(!0);const e=[..._],t=e.length;let n=0,o=0;for(const i of e){await y.waitIfPaused();const e=y.canContinue();if(!e.ok){j(e.reason),k.add("pause",{reason:e.reason});break}const s=$.find(e=>String(e.pk||e.id)===i),a=s?s.username:i;try{await b.unfollow(i),n++,y.state.sessionCount++,y.incrementDaily(),y.resetErrors(),_.delete(i),S=S.filter(e=>String(e.pk||e.id)!==i),k.add("unfollow",{username:a,userId:i})}catch(e){o++;const t=y.handleError(e);if(k.add("error",{message:e.message,userId:i}),t.fatal){j("Challenge required! Instagram wants verification. Stopping."),k.add("rate_limit",{message:"challenge_required"});break}if(y.state.consecutiveErrors>=3){j("Too many errors. Stopping for safety.");break}j("Error - backing off "+Math.round(t.delay/1e3)+"s..."),await x.sleep(t.delay);continue}if(X(n/t*100),ue(),y.shouldBatchPause()){const e=y.getBatchPause();j("Safety pause: "+(e/6e4).toFixed(1)+" min ("+n+"/"+t+" done)"),k.add("pause",{reason:"batch",duration:e}),await x.sleep(e),await y.waitIfPaused()}else{const e=y.getNextDelay();j("Unfollowed @"+a+" ("+n+"/"+t+") - waiting "+Math.round(e/1e3)+"s..."),await x.sleep(e)}}q(!1),L=!1,ce.disabled=!1,pe.style.display="none";j(n+" unfollowed"+(o>0?", "+o+" failed":"")),O(),he(),ue(),0===S.length&&(fe(!1),G.style.display="inline-flex",G.disabled=!1)};const ge=e=>{"Escape"!==e.key||L||(M.remove(),D.remove(),document.removeEventListener("keydown",ge))};document.addEventListener("keydown",ge)})();`;
+
+        document.getElementById('codeArea').textContent = minCode;
+
         function copyCode() {
             const code = document.getElementById('codeArea').textContent;
             navigator.clipboard.writeText(code).then(() => {
                 const btn = event.target;
-                btn.textContent = '✅ Copied!';
+                btn.textContent = 'Copied!';
                 btn.classList.add('copied');
                 setTimeout(() => {
-                    btn.textContent = '📋 Copy Code';
+                    btn.textContent = 'Copy Code';
                     btn.classList.remove('copied');
                 }, 2000);
             }).catch(() => {
-                alert('Error copying. Please select and copy manually.');
+                // Fallback: select text
+                const range = document.createRange();
+                range.selectNodeContents(document.getElementById('codeArea'));
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+                document.execCommand('copy');
+                alert('Code selected. Press Ctrl+C to copy.');
             });
         }
     </script>
