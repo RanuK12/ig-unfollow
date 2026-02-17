@@ -1,229 +1,221 @@
-# Instagram Unfollow Tool
+# ig-unfollow
 
-Identify and unfollow users who don't follow you back on Instagram. No installation, no external dependencies, runs entirely in your browser.
+> Identify and mass-unfollow Instagram accounts that don't follow you back — directly from your browser, no installation required.
 
-## ⚠️ Legal Disclaimer
-
-**This tool violates Instagram's Terms of Service.** Use at your own risk.
-
-Possible consequences:
-- Temporary action blocks (hours to days)
-- Permanent unfollowing restrictions
-- Account shadowbanning
-- Temporary or permanent account suspension
-
-**The developer accepts no responsibility for account penalties or data loss.**
+![JavaScript](https://img.shields.io/badge/JavaScript-ES2022-f7df1e?logo=javascript&logoColor=black)
+![No Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Version](https://img.shields.io/badge/version-2.0-informational)
 
 ---
 
-## ✨ Features
+## What it does
 
-- **Real-time scanning** - Loads all followed accounts and detects non-followers
-- **Smart filtering** - Only shows users who don't follow you back
-- **Manual control** - Review and select before any action
-- **Safety built-in** - Automatic delays (4-6s between unfollows, 30s pause every 5)
-- **No dependencies** - Pure JavaScript, runs locally in your browser
-- **Multiple methods** - Bookmarklet, console, or local copy-paste
-- **Clean UI** - Beautiful interface with real-time status updates
+**ig-unfollow** is a browser script that runs on `instagram.com` using your existing session. It:
+
+1. Fetches your full **following** and **followers** lists via the Instagram API
+2. Computes who **doesn't follow you back**
+3. Shows them in a clean, searchable interface
+4. Lets you **select and unfollow** them with built-in safety delays
+
+No app, no server, no login — it uses your browser's active Instagram session.
 
 ---
 
-## 🚀 Quick Start (Choose One Method)
+## ⚠️ Disclaimer
 
-### Method 1: Bookmarklet (Easiest - Recommended)
+**This tool violates Instagram's Terms of Service.**
+
+Possible consequences include temporary action blocks, shadowbanning, or account suspension. Use at your own risk. The author accepts no responsibility for any account penalties.
+
+---
+
+## Features
+
+| Feature | Details |
+|---|---|
+| **Non-follower detection** | Fetches full following + followers lists and diffs them |
+| **Anti-ban delays** | 8–15s between unfollows, 2–5 min pause every 10 actions |
+| **Daily limit** | Hard cap of 120 unfollows/day stored in `localStorage` |
+| **Session limit** | Max 60 unfollows per script run |
+| **Whitelist** | Protect specific accounts from ever being unfollowed |
+| **Search & filter** | Filter list by username or display name |
+| **Export** | Download non-followers as CSV or JSON |
+| **Pause / Resume** | Full control during the unfollow process |
+| **Activity log** | Persistent log of all actions across sessions |
+| **Virtual scroll** | Handles accounts lists of any size without lag |
+| **No dependencies** | Pure vanilla JavaScript, zero external libraries |
+| **No server** | Runs 100% in your browser using your own session cookies |
+
+---
+
+## Usage
+
+There are two ways to run the script. Both work the same — the only difference is how you load the code.
+
+### Method 1 — Browser Console (quickest)
+
+1. Go to [instagram.com](https://www.instagram.com) and make sure you're logged in
+2. Open DevTools:
+   - **Windows / Linux:** `F12`
+   - **Mac:** `Cmd + Option + I`
+3. Click the **Console** tab
+4. Open `bookmarklet.html` from this repo in your browser, copy the code
+5. Paste it into the console and press **Enter**
+6. A dark panel will appear — click **Scan**
+
+### Method 2 — Bookmarklet (reusable)
 
 1. Open `bookmarklet.html` in your browser
-2. Copy the JavaScript code shown in the code block
-3. Create a bookmark in your browser:
-   - Right-click your bookmark bar
-   - Click "Add bookmark" or "Add page"
-   - Paste the code in the URL field (NOT the name field)
-   - Name it "Instagram Unfollow"
-   - Save
-4. Use it:
-   - Go to instagram.com and log in
-   - Click your bookmark
-   - Click "🔍 Scan" to load all followed users
-   - Select users to unfollow by clicking them
-   - Click "🚀 Unfollow" button at the bottom
-   - Confirm when prompted
-   - Wait while the tool unfollows users
-
-### Method 2: Browser Console (No Setup)
-
-1. Go to instagram.com and log in
-2. Press `F12` (or `Cmd+Option+I` on Mac) to open DevTools
-3. Click the "Console" tab
-4. Copy the complete code from `script-main.js`
-5. Paste it into the console and press Enter
-6. The tool will start automatically
-
-### Method 3: Local HTML File (No Hosting)
-
-1. Download or clone this repository
-2. Open `COPY_CODE.html` in your web browser
-3. Follow the 4 steps shown on the page
-4. Copy the code
-5. Open instagram.com, press F12, go to Console
-6. Paste the code and press Enter
+2. Click **Copy Code**
+3. Create a new bookmark in your browser:
+   - Right-click your bookmarks bar → **Add bookmark / Add page**
+   - Paste the code into the **URL field** (not the name)
+   - Name it something like `IG Unfollow`
+4. Navigate to `instagram.com`, click your bookmark
+5. Click **Scan**
 
 ---
 
-## ⏱️ Safety Delays (Built-In)
+## How to use the panel
 
-The tool automatically includes delays to avoid Instagram detection:
+Once the script loads, a panel appears at the top of the page:
 
-| Action | Wait Time | Reason |
-| --- | --- | --- |
-| Between unfollows | 4-6 seconds (random) | Avoid rate limiting |
-| Every 5 unfollows | 30 second pause | Prevent detection |
-| Between API calls | 300ms | Maintain connection |
+```
+┌─────────────────────────────────────────────┐
+│  Instagram Unfollow                     [×]  │
+│  Following: 1,240  │  Non-followers: 318     │
+│  ─────────────────────────────────────────  │
+│  [ Scan ]  [ Select All ]  [ Export ]        │
+│  Search by username or name...               │
+│  ┌─────────────────────────────────────────┐ │
+│  │ 🛡 @username        Full Name      [ ] │ │
+│  │ 🛡 @username2       Full Name      [ ] │ │
+│  └─────────────────────────────────────────┘ │
+│  [ Unfollow (0) ]                   [Pause]  │
+└─────────────────────────────────────────────┘
+```
 
-**Timing estimates:**
-- Scanning 1650 users: 2-5 minutes
-- Unfollowing 100 users: 8-12 minutes
-- Unfollowing 500 users: 40-60 minutes
+| Action | How |
+|---|---|
+| **Scan** | Loads both lists and finds non-followers |
+| **Select users** | Click a row to check/uncheck |
+| **Select All** | Selects all visible users (respects search filter) |
+| **Whitelist a user** | Hover over a row → click the shield icon |
+| **Export** | Downloads CSV or JSON of the current filtered list |
+| **Unfollow** | Starts unfollowing selected users with safety delays |
+| **Pause / Resume** | Pauses the unfollow queue at any time |
+| **Escape** | Closes the panel (only when not unfollowing) |
 
----
-
-## 📁 Project Files
-
-| File | Purpose |
-| --- | --- |
-| `bookmarklet.html` | Step-by-step setup guide with working code |
-| `COPY_CODE.html` | Copy-paste interface for the code |
-| `script-main.js` | Full source code (readable, commented) |
-| `README.md` | English documentation |
-| `README.es.md` | Spanish documentation |
-| `LICENSE` | MIT License |
-
----
-
-## 🔍 How It Works
-
-The tool:
-1. Authenticates using your existing Instagram session (no password needed)
-2. Fetches all users you follow via Instagram's GraphQL API
-3. Filters out users who don't follow you back
-4. Shows them in a clean interface for manual review
-5. Unfollows selected users with automatic safety delays
-6. Provides real-time status updates
-
-**Technical Details:**
-- Query Hash: `3dec7e2c57367ef3da3d987d89f9dbc8`
-- API Endpoint: `POST /web/friendships/{userID}/unfollow/`
-- Authentication: Uses `ds_user_id` and `csrftoken` cookies from your session
+**Tabs:**
+- **Non-Followers** — the main list
+- **Whitelist** — accounts you've protected
+- **Activity** — log of all scans, unfollows, and errors
 
 ---
 
-## ⚠️ Important Safety Tips
+## Safety system
 
-1. **Test first** - Unfollow 1-2 users and wait 24 hours to see if Instagram reacts
-2. **Don't overuse** - Use once per week maximum, not daily
-3. **Monitor your account** - Watch for action blocks or shadowbanning
-4. **Back up first** - Save your follow list externally before using
-5. **Stop if blocked** - If Instagram blocks unfollowing, wait several days before trying again
+The script has a multi-layer anti-detection system built in:
 
----
+| Mechanism | Value | Purpose |
+|---|---|---|
+| Delay between unfollows | 8–15s random | Mimic human behavior |
+| Occasional long pause | 20–40s (10% chance) | Extra randomness |
+| Batch pause every 10 | 2–5 min random | Prevent rate limiting |
+| Daily cap | 120 unfollows | Stored in `localStorage` |
+| Session cap | 60 unfollows | Per script run |
+| Exponential backoff | 1–10 min on errors | Auto-recover from rate limits |
+| Challenge detection | Stops immediately | Avoids account verification loops |
 
-## 🚨 Risks & What to Expect
-
-| Issue | How Likely | What To Do |
-| --- | --- | --- |
-| Unfollow temporarily blocked | High | Wait 24 hours and try again |
-| Shadowban (reduced visibility) | Medium | Stop using automation, post normally for weeks |
-| Action block on account | Medium | Reduce all activity on the account |
-| Account suspension | Low | Contact Instagram support to appeal |
-
----
-
-## 🐛 Troubleshooting
-
-**"Not authenticated" error**
-- Make sure you're logged into Instagram
-- Close any other Instagram tabs
-- Clear your browser cookies
-- Refresh and try again
-
-**Bookmarklet code not working**
-- Verify the code starts with `javascript:`
-- Check the browser console (F12) for errors
-- Try creating the bookmark again
-- Make sure you pasted in the URL field, not the name field
-
-**User list not showing up**
-- Wait for the scan to complete (watch the progress bar)
-- The scan may be slow due to Instagram's API rate limits
-- You must have followed users for this to work
-
-**Unfollows failing or not completing**
-- Instagram may have temporarily blocked you
-- Wait 24 hours before trying again
-- Try unfollowing fewer users next time
-- Make sure you're still logged into Instagram
+**Estimated time:**
+- Scanning 1,000 accounts: ~2 min
+- Unfollowing 50 accounts: ~10–15 min
+- Unfollowing 120 accounts (daily max): ~30–45 min
 
 ---
 
-## 🔐 Privacy & Security
+## How it works (technical)
 
-- ✅ Runs entirely in your browser (no servers)
-- ✅ No data is sent to external services (except Instagram)
-- ✅ No login credentials are stored
-- ✅ No password required
-- ✅ Uses only your existing Instagram session
+The script uses Instagram's internal REST API — the same endpoints the web app uses:
 
----
+```
+GET  /api/v1/friendships/{userId}/following/?count=100
+GET  /api/v1/friendships/{userId}/followers/?count=100
+POST /api/v1/friendships/destroy/{targetId}/
+```
 
-## 📝 How to Use Safely
+Authentication is handled automatically using cookies already set in your browser:
+- `ds_user_id` — your Instagram user ID
+- `csrftoken` — CSRF protection token
 
-1. Test with a small number of users first (5-10)
-2. Wait 24 hours and check if your account is still working normally
-3. If no issues, gradually increase the number
-4. Never use more than once per week
-5. Stop immediately if Instagram blocks your unfollows
+No password is ever read, transmitted, or stored. The script only communicates with `instagram.com`.
 
 ---
 
-## ⚖️ License & Disclaimer
+## Privacy & security
 
-This project is released under the MIT License. It is **NOT** affiliated with, endorsed by, or associated with Instagram or Meta Platforms.
-
-**Using automation tools violates Instagram's Terms of Service.** You use this tool entirely at your own risk. The developer accepts no responsibility for:
-- Account restrictions or suspensions
-- Loss of followers or data
-- Temporary or permanent account penalties
-- Any other consequences of using this tool
-
-Use responsibly and at your own risk.
+- Runs **entirely in your browser** — no external servers involved
+- Does **not** read, store, or transmit your password or personal data
+- Uses **only your existing Instagram session** (cookies set by Instagram itself)
+- All data (whitelist, activity log, daily count) is stored in your browser's `localStorage`
+- You can inspect the full source code in [`src/script-main.js`](src/script-main.js)
 
 ---
 
-## 💡 How It's Made
+## Files
 
-This tool is written in vanilla JavaScript (ES6+) with no external dependencies. The code is designed to be:
-- **Simple** - Easy to understand and modify
-- **Transparent** - See exactly what it does
-- **Safe** - No hidden requests or data collection
-- **Efficient** - Minimal API calls, respects rate limits
-
----
-
-## 🤝 Contributing
-
-Found a bug or have an improvement? Feel free to:
-- Report issues
-- Suggest features
-- Submit code improvements
+| File | Description |
+|---|---|
+| [`src/script-main.js`](src/script-main.js) | Full, readable source code |
+| [`bookmarklet.html`](bookmarklet.html) | Setup guide + embedded minified code |
+| [`COPY_CODE.html`](COPY_CODE.html) | Minimal copy-paste interface |
+| [`README.md`](README.md) | English documentation |
+| [`README.es.md`](README.es.md) | Spanish documentation |
 
 ---
 
-## 📞 Questions?
+## Troubleshooting
 
-Check the troubleshooting section above. Most issues are related to:
-- Not being logged into Instagram
-- Instagram temporarily blocking unfollows
-- Incorrect bookmark setup
+**"Not logged in" or no CSRF token**
+→ Make sure you're logged into Instagram. Close any duplicate Instagram tabs, refresh, and try again.
+
+**Scan gets stuck or returns 0 users**
+→ Instagram may be rate-limiting the scan. Wait a few minutes and try again. Make sure you actually follow people.
+
+**Unfollows fail immediately**
+→ You may have hit a temporary action block. Wait 24 hours before retrying. Try unfollowing fewer users at a time.
+
+**Challenge required — script stops**
+→ Instagram is requesting verification. Open Instagram normally, complete any verification it asks for, then wait before using the script again.
+
+**Bookmarklet doesn't run**
+→ Confirm the saved URL starts with `javascript:`. Some browsers block bookmarklets — try the console method instead.
 
 ---
 
-**Last updated:** January 2026
+## Risks
+
+| Risk | Likelihood | Action |
+|---|---|---|
+| Temporary unfollow block | High | Wait 24 hours |
+| Shadowban | Medium | Stop automation, post organically |
+| Action block | Medium | Reduce all account activity |
+| Account suspension | Low | Appeal via Instagram support |
+
+**Tips to reduce risk:**
+- Test with 5–10 unfollows first and wait 24h
+- Never run more than once per week
+- Stop immediately if Instagram flags your account
+
+---
+
+## License
+
+MIT — free to use, modify, and distribute. See [LICENSE](LICENSE).
+
+This project is not affiliated with, endorsed by, or associated with Instagram or Meta Platforms, Inc.
+
+---
+
+*Last updated: February 2026 · v2.0*
