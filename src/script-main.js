@@ -444,7 +444,7 @@
   }
 
   // ── Virtual Scroll (list tab) ──
-  const ITEM_H = 68;
+  const ITEM_H = 56;
   const OVERSCAN = 5;
   const scrollInner = el('div', 'position:relative;');
   tabPanels.list.appendChild(scrollInner);
@@ -482,11 +482,11 @@
       const isSel = selectedUsers.has(uid);
       const isWL = Whitelist.has(uid);
 
-      const row = el('div', `display:flex;align-items:center;gap:12px;padding:10px 20px;position:absolute;top:${i * ITEM_H}px;width:100%;box-sizing:border-box;cursor:pointer;background:${isSel ? T.surfaceSelected : 'transparent'};border-left:3px solid ${isSel ? T.accent : 'transparent'};transition:background .1s;`);
+      const row = el('div', `display:flex;align-items:center;gap:10px;padding:7px 20px;position:absolute;top:${i * ITEM_H}px;width:100%;box-sizing:border-box;cursor:pointer;background:${isSel ? T.surfaceSelected : 'transparent'};border-left:3px solid ${isSel ? T.accent : 'transparent'};transition:background .1s;`);
       row.onmouseenter = () => { if (!isSel) row.style.background = T.surfaceHover; };
       row.onmouseleave = () => { if (!isSel) row.style.background = 'transparent'; };
 
-      const img = el('img', `width:42px;height:42px;border-radius:50%;object-fit:cover;flex-shrink:0;background:${T.border};`);
+      const img = el('img', `width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;background:${T.border};`);
       img.loading = 'lazy';
       img.src = user.profile_pic_url;
       img.onerror = () => { img.style.background = T.borderLight; };
