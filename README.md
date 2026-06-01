@@ -387,3 +387,8 @@ This project is not affiliated with, endorsed by, or associated with Instagram o
 <p align="center">
   <sub>Made with ❤️ for the Instagram community · v3.0 · May 2026</sub>
 </p>
+
+
+## Licencia
+
+MIT — © 2026 Ranuk IT Solutions | [ranuk.dev](https://ranuk.dev)
