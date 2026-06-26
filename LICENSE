@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 Instagram Unfollow Tool
+Copyright (c) 2026 Ranuk IT Solutions (emilio@ranuk.dev, ranuk.dev)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -17,29 +17,5 @@ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
----
-
-DESCARGO DE RESPONSABILIDAD:
-
-Este software no está afiliado, asociado, autorizado, o respaldado de ninguna
-manera por Instagram, Meta Platforms, Inc., o cualquiera de sus subsidiarias
-o afiliadas.
-
-El uso de esta herramienta se realiza bajo su propio riesgo. No nos hacemos
-responsables de:
-
-- Pérdida de acceso a la cuenta
-- Suspension temporal o permanente de la cuenta
-- Pérdida de datos
-- Cualquier otro daño derivado del uso de este software
-
-Instagram tiene el derecho y la capacidad de detectar y sancionar el uso de
-automatización no autorizada en sus plataformas. El cumplimiento de estas
-prácticas no garantiza la seguridad de su cuenta.
-
-Al usar este software, usted acepta asumir todos los riesgos asociados.
-
-Basado en el trabajo original de: https://github.com/agusmoles/instagram-unfollowers
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
