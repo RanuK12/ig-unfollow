@@ -1,51 +1,60 @@
-# ig-unfollow
+# ig-unfollow (v3.0)
 
-> Identificá y dejá de seguir masivamente las cuentas de Instagram que no te siguen de vuelta — directamente desde tu navegador, sin instalación.
+> Identifica y desigue en masa cuentas de Instagram que no te siguen de vuelta — directamente desde tu navegador, sin instalación.
 
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES2022-f7df1e?logo=javascript&logoColor=black)
 ![Sin dependencias](https://img.shields.io/badge/dependencias-ninguna-brightgreen)
 ![Licencia](https://img.shields.io/badge/licencia-MIT-blue)
-![Versión](https://img.shields.io/badge/version-2.0-informational)
+![Versión](https://img.shields.io/badge/versión-3.0-informational)
 
 ---
 
-## Para qué sirve
+## ¿Qué hace?
 
-**ig-unfollow** es un script que corre en `instagram.com` usando tu sesión activa. Hace lo siguiente:
+**ig-unfollow** es un script que se ejecuta en `instagram.com` usando tu sesión activa. Permite:
 
-1. Obtiene tu lista completa de **seguidos** y **seguidores** vía la API de Instagram
-2. Calcula quién **no te sigue de vuelta**
-3. Los muestra en una interfaz limpia y con buscador
-4. Te permite **seleccionar y dejar de seguirlos** con pausas automáticas de seguridad
+1. Obtener tu lista completa de **seguidos** y **seguidores** (vía API de Instagram)
+2. Calcular automáticamente quién **no te sigue de vuelta**
+3. Mostrarlos en una interfaz limpia y busqueable
+4. **Deseguirlos selectivamente** con delays de seguridad contra bloqueos
 
-Sin app, sin servidor, sin ingresar tu contraseña — usa la sesión que ya tenés abierta en el navegador.
-
----
-
-## ⚠️ Aviso Legal
-
-**Esta herramienta viola los Términos de Servicio de Instagram.**
-
-Las posibles consecuencias incluyen bloqueos temporales de acciones, shadowban o suspensión de la cuenta. Usala bajo tu propio riesgo. El autor no acepta responsabilidad por ninguna penalización en la cuenta.
+Sin app, sin servidor, sin re-login — usa tu sesión del navegador.
 
 ---
 
-## Funcionalidades
+## ⚠️ Descargo de Responsabilidad
 
-| Funcionalidad | Detalle |
+**CRÍTICO: Este script viola los Términos de Servicio de Instagram.**
+
+**Posibles consecuencias:**
+- Bloqueos temporales de acciones
+- Shadowban (reducción de alcance)
+- **Suspensión o eliminación de cuenta**
+
+**Usa bajo tu propio riesgo.** El autor NO acepta responsabilidad alguna por penalizaciones de cuenta.
+
+---
+
+## ✨ Características v3.0 (MEJORADO)
+
+| Característica | Detalles |
 |---|---|
-| **Detección de no-seguidores** | Compara la lista de seguidos con la de seguidores |
-| **Delays anti-ban** | 8–15s entre unfollows, pausa de 2–5 min cada 10 acciones |
-| **Límite diario** | Máximo de 120 unfollows/día (guardado en `localStorage`) |
-| **Límite por sesión** | Máximo 60 unfollows por ejecución del script |
-| **Whitelist** | Protegé cuentas específicas para que nunca sean removidas |
-| **Búsqueda y filtro** | Filtrá la lista por nombre de usuario o nombre real |
-| **Exportar** | Descargá la lista de no-seguidores en CSV o JSON |
-| **Pausar / Reanudar** | Control total durante el proceso de unfollow |
-| **Registro de actividad** | Log persistente de todas las acciones entre sesiones |
+| **Detección de no-seguidores** | Compara seguidos vs seguidores. Cero errores. |
+| **Delays anti-ban MEJORADOS** | 10-18s entre deseguidores + jitter impredecible |
+| **Pausas de seguridad** | 3-7 min cada 8 deseguidores |
+| **Límite diario mejorado** | 100 máximo/día (antes 120) |
+| **Límite de sesión** | 40 máximo/sesión (antes 60) |
+| **Indicador de riesgo** | Barra visual que muestra tu nivel de peligro (0-100%) |
+| **Validación de sesión** | Verifica cookies activas antes de cada operación |
+| **Backoff exponencial** | Escalada más agresiva de delays si hay errores |
+| **Whitelist** | Protege cuentas de amigos de ser deseguidas |
+| **Búsqueda y filtrado** | Busca por usuario o nombre |
+| **Exportación** | Descarga no-seguidores como CSV o JSON |
+| **Pausa/Reanuda** | Control total durante la ejecución |
+| **Historial de actividad** | Registro persistente de todas las acciones |
 | **Scroll virtual** | Maneja listas de cualquier tamaño sin lag |
-| **Sin dependencias** | Vanilla JavaScript puro, sin librerías externas |
-| **Sin servidor** | Corre 100% en tu navegador usando tus propias cookies de sesión |
+| **Sin dependencias** | JavaScript vanilla puro, cero librerías |
+| **Sin servidor** | 100% en navegador con tus cookies |
 
 ---
 

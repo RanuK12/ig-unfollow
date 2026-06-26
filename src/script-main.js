@@ -10,6 +10,9 @@
   class ChallengeError extends Error {
     constructor(m) { super(m); this.name = 'ChallengeError'; }
   }
+  class SessionError extends Error {
+    constructor(m) { super(m); this.name = 'SessionError'; }
+  }
 
   // ─── Theme ───────────────────────────────────────────────────────────
   const T = {
@@ -26,6 +29,7 @@
     dangerHover: '#dc2626',
     success: '#22c55e',
     warning: '#f59e0b',
+    critical: '#d97706',
     text: '#e4e4e7',
     textSec: '#a1a1aa',
     textMuted: '#71717a',
@@ -44,36 +48,66 @@
     getCSRFToken: () => Utils.getCookie('csrftoken'),
     sleep: (ms) => new Promise(r => setTimeout(r, ms)),
     randomDelay: (min, max) => Math.floor(Math.random() * (max - min) + min),
+    randomJitter: (base, percent = 0.2) => base + (Math.random() - 0.5) * base * percent * 2,
     formatNum: (n) => n.toLocaleString('en-US'),
+    formatTime: (ms) => {
+      const s = Math.round(ms / 1000);
+      if (s < 60) return s + 's';
+      const m = Math.round(s / 60);
+      return m + 'min';
+    },
   };
 
-  // ─── Safety Manager (Anti-Ban) ──────────────────────────────────────
+  // ─── Session Validator (ANTI-BAN: Verifica sesión activa) ────────────
+  const SessionValidator = {
+    lastValidation: 0,
+    validationInterval: 30000,
+    validate() {
+      const now = Date.now();
+      if (now - this.lastValidation < this.validationInterval) return true;
+      const userId = Utils.getUserID();
+      const csrf = Utils.getCSRFToken();
+      if (!userId || !csrf) throw new SessionError('Sesión inválida. Reinicia sesión en instagram.com');
+      if (!window.location.href.includes('instagram.com')) throw new SessionError('Debes estar en instagram.com');
+      this.lastValidation = now;
+      return true;
+    },
+  };
+
+  // ─── Safety Manager (Anti-Ban) v3.0 ────────────────────────────────
   const Safety = {
     config: {
-      unfollowDelay: [8000, 15000],
-      scanDelay: [400, 800],
-      batchPause: [120000, 300000],
-      batchSize: 10,
-      dailyLimit: 120,
-      sessionLimit: 60,
-      initialBackoff: 60000,
-      maxBackoff: 600000,
-      backoffMultiplier: 2,
+      unfollowDelay: [10000, 18000],      // MEJORADO: Delays más largos
+      scanDelay: [600, 1200],              // MEJORADO: Más conservador
+      batchPause: [180000, 420000],        // MEJORADO: 3-7 min
+      batchSize: 8,                        // MEJORADO: Lotes más pequeños
+      dailyLimit: 100,                     // REDUCIDO: de 120 a 100
+      sessionLimit: 40,                    // REDUCIDO: de 60 a 40
+      initialBackoff: 120000,              // AUMENTADO: 2min inicial
+      maxBackoff: 900000,                  // AUMENTADO: 15min máximo
+      backoffMultiplier: 2.5,              // AUMENTADO: Escalada más rápida
+      maxConsecutiveErrors: 2,             // REDUCIDO: Límite estricto
+      sessionMaxAge: 7200000,              // 2 horas máximo
     },
     state: {
       sessionCount: 0,
       consecutiveErrors: 0,
-      currentBackoff: 60000,
+      currentBackoff: 0,
       isPaused: false,
       pauseResolve: null,
       isCancelled: false,
+      rateLimitHits: 0,
+      sessionStart: Date.now(),
+      riskScore: 0,
     },
+    
     getDailyCount() {
       try {
         const d = JSON.parse(localStorage.getItem('ig_unf_daily') || '{}');
         return d.date === new Date().toISOString().slice(0, 10) ? (d.count || 0) : 0;
       } catch { return 0; }
     },
+    
     incrementDaily() {
       try {
         const today = new Date().toISOString().slice(0, 10);
@@ -82,42 +116,67 @@
         localStorage.setItem('ig_unf_daily', JSON.stringify({ date: today, count }));
       } catch {}
     },
+    
+    calculateRiskScore() {
+      let score = 0;
+      const dailyCount = this.getDailyCount();
+      score += Math.min(dailyCount / this.config.dailyLimit * 40, 40);
+      score += Math.min(this.state.sessionCount / this.config.sessionLimit * 30, 30);
+      score += Math.min(this.state.rateLimitHits * 15, 20);
+      score += Math.min(this.state.consecutiveErrors * 10, 20);
+      const sessionAge = Date.now() - this.state.sessionStart;
+      if (sessionAge > this.config.sessionMaxAge * 0.7) score += 15;
+      if (sessionAge > this.config.sessionMaxAge) score += 25;
+      this.state.riskScore = Math.min(100, Math.round(score));
+      return this.state.riskScore;
+    },
+    
     canContinue() {
-      if (this.state.isCancelled) return { ok: false, reason: 'Cancelled' };
+      if (this.state.isCancelled) return { ok: false, reason: 'Operación cancelada' };
       if (this.getDailyCount() >= this.config.dailyLimit)
-        return { ok: false, reason: 'Daily limit reached (' + this.config.dailyLimit + ')' };
+        return { ok: false, reason: 'Límite diario alcanzado (' + this.config.dailyLimit + ')' };
       if (this.state.sessionCount >= this.config.sessionLimit)
-        return { ok: false, reason: 'Session limit reached (' + this.config.sessionLimit + '). Restart later.' };
+        return { ok: false, reason: 'Límite de sesión (' + this.config.sessionLimit + '). Intenta después.' };
+      if (Date.now() - this.state.sessionStart > this.config.sessionMaxAge)
+        return { ok: false, reason: 'Sesión muy larga. Descansa 30min.' };
+      if (this.state.consecutiveErrors >= this.config.maxConsecutiveErrors)
+        return { ok: false, reason: 'Demasiados errores. Pausa obligatoria.' };
       return { ok: true };
     },
+    
     getNextDelay() {
       const [min, max] = this.config.unfollowDelay;
-      if (Math.random() < 0.1) return Utils.randomDelay(20000, 40000);
-      return Utils.randomDelay(min, max);
+      const baseDelay = Utils.randomDelay(min, max);
+      const jitterDelay = Utils.randomJitter(baseDelay, 0.35);
+      if (Math.random() < 0.10) return Utils.randomDelay(25000, 45000);
+      return Math.round(jitterDelay);
     },
+    
     shouldBatchPause() {
       return this.state.sessionCount > 0 && this.state.sessionCount % this.config.batchSize === 0;
     },
+    
     getBatchPause() {
-      return Utils.randomDelay(...this.config.batchPause);
+      const [min, max] = this.config.batchPause;
+      return Utils.randomDelay(min, max);
     },
+    
     handleError(error) {
       this.state.consecutiveErrors++;
       const fatal = error instanceof ChallengeError;
+      if (error instanceof RateLimitError) this.state.rateLimitHits++;
       const delay = Math.min(
-        this.state.currentBackoff * this.state.consecutiveErrors,
+        this.state.currentBackoff * Math.pow(this.config.backoffMultiplier, this.state.consecutiveErrors - 1),
         this.config.maxBackoff
       );
-      this.state.currentBackoff *= this.config.backoffMultiplier;
       return { delay, fatal };
     },
+    
     resetErrors() {
       this.state.consecutiveErrors = 0;
       this.state.currentBackoff = this.config.initialBackoff;
     },
-    pause() {
-      this.state.isPaused = true;
-    },
+    pause() { this.state.isPaused = true; },
     resume() {
       this.state.isPaused = false;
       if (this.state.pauseResolve) {
@@ -136,6 +195,7 @@
       this.state.isPaused = false;
       this.state.isCancelled = false;
       this.state.pauseResolve = null;
+      this.state.sessionStart = Date.now();
     },
     async waitIfPaused() {
       while (this.state.isPaused && !this.state.isCancelled) {
@@ -147,8 +207,8 @@
   // ─── Instagram API (v1 REST) ────────────────────────────────────────
   const API = {
     getHeaders() {
+      SessionValidator.validate();
       const csrf = Utils.getCSRFToken();
-      if (!csrf) throw new Error('No CSRF token. Make sure you are logged in.');
       return {
         'X-CSRFToken': csrf,
         'X-IG-App-ID': '936619743392459',
@@ -157,8 +217,11 @@
       };
     },
     async request(url, options = {}) {
+      SessionValidator.validate();
       const res = await fetch(url, { credentials: 'include', ...options });
       if (res.status === 429) throw new RateLimitError('Rate limited (429)');
+      if (res.status === 401) throw new SessionError('Sesión expirada (401)');
+      if (res.status === 403) throw new SessionError('Acceso prohibido (403)');
       if (res.status === 400) {
         let body;
         try { body = await res.json(); } catch { body = {}; }
@@ -334,6 +397,29 @@
   titleRow.appendChild(titleEl);
   titleRow.appendChild(closeBtn);
   header.appendChild(titleRow);
+
+  // Risk indicator (NUEVO v3.0)
+  const riskBar = el('div', `width:100%;height:6px;background:${T.surface};border-radius:3px;margin-bottom:12px;overflow:hidden;`);
+  const riskFill = el('div', `height:100%;width:0%;border-radius:3px;transition:width .3s;background:${T.success};`);
+  riskBar.appendChild(riskFill);
+  header.appendChild(riskBar);
+  
+  const riskLabel = el('div', `font-size:11px;color:${T.textMuted};margin-bottom:10px;`, { text: '🎯 Risk: Low (0%)' });
+  header.appendChild(riskLabel);
+  
+  function updateRiskBar() {
+    const risk = Safety.calculateRiskScore();
+    const pct = Math.min(100, Math.max(0, risk));
+    riskFill.style.width = pct + '%';
+    let color = T.success;
+    let level = 'Low';
+    if (pct >= 70) { color = T.danger; level = 'CRITICAL'; }
+    else if (pct >= 50) { color = T.critical; level = 'High'; }
+    else if (pct >= 30) { color = T.warning; level = 'Moderate'; }
+    riskFill.style.background = color;
+    riskLabel.textContent = '🎯 Risk: ' + level + ' (' + pct + '%)';
+    riskLabel.style.color = color;
+  }
 
   // Stats bar
   const statsBar = el('div', `display:flex;gap:12px;flex-wrap:wrap;padding:10px 14px;background:${T.surface};border-radius:8px;margin-bottom:12px;font-size:12px;color:${T.textSec};display:none;`);
@@ -705,6 +791,7 @@
       showProgress(false);
       setStatus(Utils.formatNum(following.length) + ' following, ' + Utils.formatNum(nonFollowers.length) + ' don\'t follow back');
       updateStats();
+      updateRiskBar();
       applyFilters();
       showPostScanUI(true);
 
@@ -829,6 +916,7 @@
 
       setProgress((completed / total) * 100);
       updateUnfollowBtn();
+      updateRiskBar();
 
       if (Safety.shouldBatchPause()) {
         const pause = Safety.getBatchPause();
