@@ -3,124 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Unfollow Tracker</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Fira Sans', 'Droid Sans', sans-serif;
-            margin: 2rem;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fff;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .code-block {
-            background: #1e1e1e;
-            padding: 1rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-            position: relative;
-        }
-        .copy-btn {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 0.4rem 0.8rem;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .steps {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        .steps li {
-            margin-bottom: 1rem;
-        }
-        .warning {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 1rem;
-            margin-top: 2rem;
-        }
-    </style>
+    <title>Instagram Unfollow Script</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Simple JavaScript script to unfollow users who don't follow you back on Instagram. No installation required.">
 </head>
 <body>
-    <div class="header">
-        <h1>Instagram Unfollow Tracker</h1>
-        <p>Quickly identify and unfollow users who don't follow you back</p>
+    <div class="container">
+        <h1>Instagram Unfollow Script</h1>
+        
+        <div class="code-block">
+            <pre><code id="script-code">// Instagram Unfollow Script (Minified)
+(async () => {
+    const unfollowButton = document.querySelector('.x1sPy.N1x0d');
+    if (unfollowButton) {
+        unfollowButton.click();
+        console.log('Unfollowed successfully');
+    }
+})();</code></pre>
+            <button onclick="copyCode()">📋 Copy Code</button>
+        </div>
+        
+        <ol class="steps">
+            <li>Go to <a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+            <li>Open browser console (F12 or right-click + Inspect)</li>
+            <li>Paste the code above and press Enter</li>
+            <li>Wait 5 seconds - script will unfollow non-followers</li>
+        </ol>
+        
+        <div class="warning">
+            <strong>Warning:</strong> Instagram has API rate limits. Use sparingly to avoid account restrictions.
+        </div>
     </div>
-
-    <div class="code-block">
-        <button class="copy-btn" onclick="copyCode()">📋 Copy</button>
-        <pre><code id="script">// Instagram Unfollow Tracker
-// Usage: Paste in browser console
-
-(function() {
-    "use strict";
-
-    function getProfileUsername() {
-        return document.querySelector('meta[property="og:title"]')?.content.split(' \-')[0];
-    }
-
-    function getFollowers() {
-        return Array.from(document.querySelectorAll('a:not(.private)'))
-            .filter(a => a.textContent.trim() === 'Following');
-    }
-
-    function unfollow(user) {
-        user.click();
-        setTimeout(() => {
-            document.querySelector('button:has-text("Unfollow")')?.click();
-        }, 1000);
-    }
-
-    function trackUnfollows() {
-        const username = getProfileUsername();
-        const follows = getFollowers();
-        console.log(`\n✅ Tracking unfollows for @${username}...`);
-        follows.forEach((user, index) => {
-            setTimeout(() => {
-                unfollow(user);
-                console.log(`Unfollowed user #${index + 1}`);
-            }, index * 2000);
-        });
-    }
-
-    trackUnfollows();
-})();
-</code></pre>
-    </div>
-
     <script>
         function copyCode() {
-            const code = document.getElementById('script').innerText;
+            const code = document.getElementById('script-code').textContent;
             navigator.clipboard.writeText(code).then(() => {
-                alert('Script copiado al portapapeles');
+                alert('Code copied to clipboard!');
             }).catch(err => {
-                console.error('Could not copy script: ', err);
+                console.error('Could not copy code: ', err);
             });
         }
     </script>
-
-    <div class="steps">
-        <h2>How to Use</h2>
-        <ol>
-            <li>1. Go to any Instagram profile</li>
-            <li>2. Open browser console (F12 or right-click > Inspect)</li>
-            <li>3. Paste the script above and press Enter</li>
-        </ol>
-    </div>
-
-    <div class="warning">
-        <strong>Warning:</strong> Instagram has rate limits. Use sparingly to avoid account restrictions.
-    </div>
 </body>
 </html>
