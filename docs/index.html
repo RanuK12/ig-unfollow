@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Unfollow Script</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Simple JavaScript script to unfollow users who don't follow you back on Instagram. No installation required.">
+</head>
+<body>
+    <div class="container">
+        <h1>Instagram Unfollow Script</h1>
+        
+        <div class="code-block">
+            <pre><code id="script-code">// Instagram Unfollow Script (Minified)
+(async () => {
+    const unfollowButton = document.querySelector('.x1sPy.N1x0d');
+    if (unfollowButton) {
+        unfollowButton.click();
+        console.log('Unfollowed successfully');
+    }
+})();</code></pre>
+            <button onclick="copyCode()">📋 Copy Code</button>
+        </div>
+        
+        <ol class="steps">
+            <li>Go to <a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+            <li>Open browser console (F12 or right-click + Inspect)</li>
+            <li>Paste the code above and press Enter</li>
+            <li>Wait 5 seconds - script will unfollow non-followers</li>
+        </ol>
+        
+        <div class="warning">
+            <strong>Warning:</strong> Instagram has API rate limits. Use sparingly to avoid account restrictions.
+        </div>
+    </div>
+    <script>
+        function copyCode() {
+            const code = document.getElementById('script-code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard!');
+            }).catch(err => {
+                console.error('Could not copy code: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
