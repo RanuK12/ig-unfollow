@@ -12,9 +12,9 @@ Este script identifica cuentas que no te siguen de vuelta y te permite dejar de 
 2️⃣ **Pegá este código** en la consola de desarrolladores:
 
 ```javascript
-// Código minificado del bookmarklet (ejemplo)
+// Carga el script real del repo (docs/script.js)
 const script = document.createElement('script');
-script.src = 'https://raw.githubusercontent.com/RanuK12/ig-unfollow/main/bookmarklet.js';
+script.src = 'https://raw.githubusercontent.com/RanuK12/ig-unfollow/main/docs/script.js';
 script.onload = () => console.log('Instagram Unfollow cargado');
 document.body.appendChild(script);
 ```
