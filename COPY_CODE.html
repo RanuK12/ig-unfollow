@@ -49,6 +49,59 @@
             margin: 16px 0;
             padding: 16px;
             background: #1c1c1c;
+            border-radius: 8px;
+            border-left: 3px solid #3b82f6;
+        }
+        .step-number {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 14px;
+        }
+        .step-content {
+            display: inline-block;
+            vertical-align: top;
+            width: calc(100% - 40px);
+        }
+        .screenshot {
+            width: 100%;
+            border-radius: 8px;
+            margin: 16px 0;
+            border: 1px solid #2a2a2a;
+        }
+        .screenshot img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .copy-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.2s;
+            margin: 16px 0;
+        }
+        .copy-button:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+        .copy-button:active {
+            transform: translateY(0);
+        }
+        .copy-button.copied {
+            background: #22c55e;
+        }
             border-left: 3px solid #3b82f6;
             border-radius: 0 8px 8px 0;
         }

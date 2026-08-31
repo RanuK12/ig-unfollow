@@ -1,0 +1,28 @@
+
+# 2026-08-16 15:12:05.454170
++Reestructurar el README.md para que:
++
++1. **Encabezado impactante**: Una frase clara y directa en la primera línea (ej: "Deja de seguir en Instagram a quienes no te siguen de vuelta — en 30 segundos y sin instalar nada").
++2. **Bloque de código copiable**: Incluir el código minificado del bookmarklet en un bloque ```javascript para que el usuario lo copie y pegue en la consola de Instagram.
++3. **3 pasos visuales**: Usar emojis y ASCII para simular capturas de pantalla (ej: "1️⃣ Abrí Instagram → 2️⃣ Pegá este código → 3️⃣ Hacé clic en 'Scan'").
++4. **Todo lo demás**: Mover detalles técnicos, seguridad, troubleshooting y features a una sección **"Detalles técnicos"** después de los 3 pasos.
++5. **Mantener**: Licencia, disclaimer y créditos al final.
++
++El objetivo es que un usuario que llega por primera vez entienda QUÉ hace el script, CÓMO usarlo y pueda empezar en 30 segundos.
+
+# 2026-08-16 15:12:05.454711
++Reestructurar el README.md para que:
++
++1. **Encabezado impactante**: Una frase clara y directa en la primera línea (ej: "Deja de seguir en Instagram a quienes no te siguen de vuelta — en 30 segundos y sin instalar nada").
++2. **Bloque de código copiable**: Incluir el código minificado del bookmarklet en un bloque ```javascript para que el usuario lo copie y pegue en la consola de Instagram.
++3. **3 pasos visuales**: Usar emojis y ASCII para simular capturas de pantalla (ej: "1️⃣ Abrí Instagram → 2️⃣ Pegá este código → 3️⃣ Hacé clic en 'Scan'").
++4. **Todo lo demás**: Mover detalles técnicos, seguridad, troubleshooting y features a una sección **"Detalles técnicos"** después de los 3 pasos.
++5. **Mantener**: Licencia, disclaimer y créditos al final.
++
++El objetivo es que un usuario que llega por primera vez entienda QUÉ hace el script, CÓMO usarlo y pueda empezar en 30 segundos.
+
+# 2026-08-16 15:54:42.037496
++Rewrite README to make it decision-ready in 10 seconds: 1) First line must clearly state what it does in one sentence 2) Add a bold call-to-action button (like [Use Now]) 3) Use emojis to highlight key points 4) Make code snippet real (replace example with actual bookmarklet.js URL) 5) Add QR code for GitHub repo 6) Keep warning but make it stand out 7) Fix technical details to use bullet points.
+
+# 2026-08-16 15:54:42.038087
++Rewrite README to make it decision-ready in 10 seconds: 1) First line must clearly state what it does in one sentence 2) Add a bold call-to-action button (like [Use Now]) 3) Use emojis to highlight key points 4) Make code snippet real (replace example with actual bookmarklet.js URL) 5) Add QR code for GitHub repo 6) Keep warning but make it stand out 7) Fix technical details to use bullet points.
