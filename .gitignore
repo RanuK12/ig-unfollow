@@ -26,3 +26,8 @@ temp/
 !bookmarklet.html
 !script-main.js
 !COPY_CODE.html
+.aider*
+__pycache__/
+*.pyc
+.coverage
+.pytest_cache/
